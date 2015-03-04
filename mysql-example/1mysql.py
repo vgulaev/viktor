@@ -30,7 +30,7 @@ cursor.execute(sql)
 sql = """CREATE TABLE firms (
 id INT(5) AUTO_INCREMENT,
 name VARCHAR(40),
-PRIMARY KEY (id);"""
+PRIMARY KEY (id));"""
 cursor.execute(sql)
 #Заполнение
 sql = """INSERT INTO firms (name) VALUES
@@ -39,14 +39,14 @@ sql = """INSERT INTO firms (name) VALUES
 ('goodfirm');"""
 cursor.execute(sql)
 # Создание таблицы большая таблиа, для связи таблиц персонала и фирм : идентификатор - число длиной 5, должность - строка длиною не более 30 символов и дефолтным значением "какая-то должность", идентификатор работника - число, вторичный ключ, вторичный ключ - идентификатор работника связанный с полем идентификатор из таблицы персонал
-sql = """CREATE TABLE bigtable
+sql = """CREATE TABLE bigtable (
 id INT (5) AUTO_INCREMENT,
 post VARCHAR(30) DEFAULT('какая-то должность'),
 id_firm INT(5),
 id_personal INT(5),
 PRIMARY KEY (id),
 FOREIGN KEY (id_personal) REFERENCES personal(id)),
-FOREIGN KEY (id_firm) REFERENCES firm (id);"""
+FOREIGN KEY (id_firm) REFERENCES firm (id));"""
 cursor.execute(sql)
 #Заполнение
 sql = """INSERT INTO bigtable (post, id_firm, id_personal) VALUES
