@@ -1,14 +1,14 @@
 #github
 import pymysql as MySQLdb
 #Подключение к СУБД
-db = MySQLdb.connect( host = "127.0.0.1", user = "root", passwd = "rootpass", charset = 'utf8' )
+db = MySQLdb.connect( host = "127.0.0.1", user = "root", passwd = "", charset = 'utf8' )
 cursor = db.cursor()
 #Создание БД "Victor"
 sql = "CREATE DATABASE IF NOT EXISTS Victor"
 cursor.execute(sql)
 db.commit()
 #Подключение к созданой БД
-db = MySQLdb.connect( host = "127.0.0.1", user = "root", passwd = "rootpass", db = "victor", charset = 'utf8' )
+db = MySQLdb.connect( host = "127.0.0.1", user = "root", passwd = "", db = "victor", charset = 'utf8' )
 cursor = db.cursor()
 #Создание таблицы Персонал : идентификатор - число длиною 5, ФИО - строка длиной не более 50, пол - перечисление, день рождения - дата, необязательный параметр, первичный ключ - идентификатор
 sql = """CREATE TABLE personal (
@@ -38,15 +38,15 @@ sql = """INSERT INTO firms (name) VALUES
 ('microsoft'),
 ('goodfirm');"""
 cursor.execute(sql)
-# Создание таблицы большая таблиа, для связи таблиц персонала и фирм : идентификатор - число длиной 5, должность - строка длиною не более 30 символов и дефолтным значением "какая-то должность", идентификатор работника - число, вторичный ключ, вторичный ключ - идентификатор работника связанный с полем идентификатор из таблицы персонал
+# Создание таблицы большая 
 sql = """CREATE TABLE bigtable (
-id INT (5) AUTO_INCREMENT,
-post VARCHAR(30) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT('какая-то должность'),
+id INT(5) AUTO_INCREMENT,
+post VARCHAR(30) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT 'какая-то должность',
 id_firm INT(5),
 id_personal INT(5),
 PRIMARY KEY (id),
-FOREIGN KEY (id_personal) REFERENCES personal(id)),
-FOREIGN KEY (id_firm) REFERENCES firm (id));"""
+FOREIGN KEY (id_personal) REFERENCES personal(id),
+FOREIGN KEY (id_firm) REFERENCES firms(id));"""
 cursor.execute(sql)
 #Заполнение
 sql = """INSERT INTO bigtable (post, id_firm, id_personal) VALUES
