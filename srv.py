@@ -1,7 +1,6 @@
 from http.server import BaseHTTPRequestHandler
 from http.server import HTTPServer
 import datetime
-import os
 import urllib
 import time
 import json
