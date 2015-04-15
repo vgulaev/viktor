@@ -11,10 +11,6 @@ class HTTPRequestHandler( BaseHTTPRequestHandler ):
         o = urllib.parse.urlparse( self.path )
         f = open( "hello.html", "rb" )
         ans = f.read()
-        ans1 = """
-        привет
-        """
-        #bs = bytes( ans, "utf-8" )
         self.wfile.write( ans )
         print( o.path )
 
